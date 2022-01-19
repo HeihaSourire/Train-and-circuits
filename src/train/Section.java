@@ -8,6 +8,8 @@ package train;
  * @author Philippe Tanguy <philippe.tanguy@imt-atlantique.fr>
  */
 public class Section extends Element {
+	
+	
 	public Section(String name) {
 		super(name);
 	}
@@ -18,5 +20,49 @@ public class Section extends Element {
 		return false;
 	}
 	
+//	@Override
+//	public synchronized void arrive(String trainName) {
+//		// TODO Auto-generated method stub
+//		while(taken) {
+//			try {
+//				wait();
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		System.out.println(trainName + " arrive " + name);
+//		this.taken = true;
+//	}
+	
+	@Override
+	public synchronized void depart(String trainName, Element nextElement ) {
+		// TODO Auto-generated method stub
+		System.out.println(trainName + " is in " + name);
+		while (nextElement.taken) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+		}
+		nextElement.taken = true;
+		super.taken = false;
+		System.out.println(trainName + " from " + name + " to " + nextElement.toString());
+		notifyAll();
+	}
 	
 }

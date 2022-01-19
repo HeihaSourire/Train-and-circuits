@@ -14,8 +14,10 @@ package train;
  * @author Philippe Tanguy <philippe.tanguy@imt-atlantique.fr>
  */
 public abstract class Element {
-	private final String name;
+	protected final String name;
 	protected Railway railway;
+	protected int nbTrain = 0;
+	protected boolean taken = false;
 
 	protected Element(String name) {
 		if(name == null)
@@ -30,7 +32,7 @@ public abstract class Element {
 		
 		this.railway = r;
 	}
-
+	
 	@Override
 	public String toString() {
 		return this.name;
@@ -38,5 +40,16 @@ public abstract class Element {
 	
 	public boolean isArrive() {
 		return false;
+	}
+	
+	public void addNbTrain() {
+		
+	}
+	
+	public synchronized void arrive(String trainName) {
+	}
+	
+	public synchronized void depart(String trainName, Element nextElement) {
+		
 	}
 }

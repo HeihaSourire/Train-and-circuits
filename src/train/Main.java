@@ -13,16 +13,24 @@ public class Main {
 		Railway r = new Railway(new Element[] { A, AB, BC, CD, D });
 		System.out.println("The railway is:");
 		System.out.println("\t" + r);
-		Position p = new Position(A, Direction.LR);
+		Position pLR = new Position(A, Direction.LR);
+		Position pRL = new Position(D, Direction.RL);
 		try {
-			Train t1 = new Train("1", p);
-//			Train t2 = new Train("2", p);
-//			Train t3 = new Train("3", p);
-//			System.out.println(t1);
-//			System.out.println(t2);
-			System.out.println(t1);
+			Train train1 = new Train("1", pLR);
+			Thread t1 = new Thread(train1);
+			Train train2 = new Train("2", pRL);
+			Thread t2 = new Thread(train2);
 			
-			t1.deplace();
+//			Train t3 = new Train("3", p);
+			System.out.println(train1);
+			System.out.println(train2);
+			
+		
+			t1.start();
+			t2.start();
+			
+//			System.out.println(t1);
+			
 		} catch (BadPositionForTrainException e) {
 			System.out.println("Le train " + e.getMessage());
 		}

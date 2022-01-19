@@ -41,4 +41,8 @@ public class Railway {
 		
 		return null;
 	}
+	
+	public int railWayLength() {
+		return elements.length;
+	}
 }

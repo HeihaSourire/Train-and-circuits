@@ -24,5 +24,42 @@ public class Station extends Element {
 		return true;
 	}
 	
+	@Override
+	public void addNbTrain() {
+		// TODO Auto-generated method stub
+		super.nbTrain++;
+	}
 	
+	@Override
+	public synchronized void arrive(String trainName) {
+		// TODO Auto-generated method stub
+		while(nbTrain > size) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println(trainName + " arrive " + name);
+		super.nbTrain++;
+	}
+	
+	@Override
+	public synchronized void depart(String trainName, Element nextElement) {
+		// TODO Auto-generated method stub
+		while (nextElement.taken == true) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		nextElement.taken = true;
+		super.nbTrain--;
+		System.out.println(trainName + " depart " + name);
+		notifyAll();
+	}
 }

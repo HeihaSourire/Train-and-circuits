@@ -17,7 +17,7 @@ package train;
  * @author Philippe Tanguy <philippe.tanguy@imt-atlantique.fr>
  * @version 0.3
  */
-public class Train {
+public class Train implements Runnable{
 	private final String name;
 	private final Position pos;
 
@@ -31,6 +31,7 @@ public class Train {
 
 		this.name = name;
 		this.pos = p.clone();
+		this.pos.initialStation();
 	}
 
 	@Override
@@ -45,9 +46,22 @@ public class Train {
 	
 	public void deplace() {
 //		pos.getPos()
-		System.out.println("le train est en " + pos.getPos().toString());
-		while (!pos.moveNext()) {
+
+		while (true) {
+			if (pos.moveNext(this.name)) {
+//				System.out.println("le train " + this.name + " est en " + pos.getPos().toString());
+//				System.out.println("le train " + this.name + " se retourne");
+				break;
+			}
+//			System.out.println("le train " + this.name + " est en " + pos.getPos().toString());
 		}
 		
+		
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		this.deplace();
 	}
 }

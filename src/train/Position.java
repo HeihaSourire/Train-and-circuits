@@ -28,10 +28,14 @@ public class Position implements Cloneable {
 		if (elt == null || d == null)
 			throw new NullPointerException();
 
-		this.pos = elt;
-		this.direction = d;
+		pos = elt;
+		direction = d;
+		if (direction == Direction.LR) {
+			posIndex = 0;
+		} else if (direction == Direction.RL){
+			posIndex = pos.railway.railWayLength() - 1;
+		}
 		
-		posIndex = 0;
 	}
 
 	@Override
@@ -44,6 +48,10 @@ public class Position implements Cloneable {
 		}
 	}
 
+	public void initialStation() {
+		this.pos.addNbTrain();
+	}
+	
 	public Element getPos() {
 		return pos;
 	}
@@ -56,11 +64,33 @@ public class Position implements Cloneable {
 		return result.toString();
 	}
 	
-	public boolean moveNext() {
-		Element nextElement = pos.railway.getElement(++posIndex);
-		System.out.println("le train sort de " + pos.toString() + " et entre dans " + nextElement.toString());
-		pos = nextElement;
+	public boolean moveNext(String trainName) {
 		
+		Element nextElement = null;
+		
+		if (direction == Direction.LR) {
+			nextElement = pos.railway.getElement(posIndex + 1);
+		} else if (direction == Direction.RL){
+			nextElement = pos.railway.getElement(posIndex - 1);
+		}
+		
+		pos.depart(trainName, nextElement);
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if (direction == Direction.LR) {
+			posIndex++;
+		} else if (direction == Direction.RL){
+			posIndex--;
+		}
+		
+		pos = nextElement;
+//		pos.arrive(trainName);
 		
 		if (pos.isArrive()) {
 			switch (direction) {
@@ -71,10 +101,12 @@ public class Position implements Cloneable {
 					direction = direction.LR;
 					break;
 			}
-			System.out.print("le train se retourne");
+			
 			return true;
 		}
 		
 		return false;
 	}
+	
+	
 }
