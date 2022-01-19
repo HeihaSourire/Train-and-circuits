@@ -25,9 +25,9 @@ public class Main {
 			System.out.println(train1);
 			System.out.println(train2);
 			
-		
+			t2.start();		
 			t1.start();
-			t2.start();
+
 			
 //			System.out.println(t1);
 			

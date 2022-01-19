@@ -20,9 +20,9 @@ public class Section extends Element {
 		return false;
 	}
 	
-//	@Override
-//	public synchronized void arrive(String trainName) {
-//		// TODO Auto-generated method stub
+	@Override
+	public synchronized void arrive(String trainName) {
+		// TODO Auto-generated method stub
 //		while(taken) {
 //			try {
 //				wait();
@@ -31,38 +31,39 @@ public class Section extends Element {
 //				e.printStackTrace();
 //			}
 //		}
-//		System.out.println(trainName + " arrive " + name);
-//		this.taken = true;
-//	}
+		
+		System.out.println(trainName + " left " + name);
+		this.taken = false;
+		notifyAll();
+	}
 	
 	@Override
-	public synchronized void depart(String trainName, Element nextElement ) {
+	public synchronized void depart(String trainName) {
 		// TODO Auto-generated method stub
-		System.out.println(trainName + " is in " + name);
-		while (nextElement.taken) {
+//		System.out.println(trainName + " is in " + name);
+//		while (nextElement.taken) {
+//			try {
+//				wait();
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//			}
+//		}
+//		nextElement.taken = true;
+//		super.taken = false;
+//		System.out.println(trainName + " from " + name + " to " + nextElement.toString());
+//		notifyAll();
+		while(taken == true) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+				e.printStackTrace();
 			}
 		}
-		nextElement.taken = true;
-		super.taken = false;
-		System.out.println(trainName + " from " + name + " to " + nextElement.toString());
-		notifyAll();
+		
+		System.out.println(trainName + " want to go " + name);
+		super.taken = true;
+//		notifyAll();
 	}
 	
 }

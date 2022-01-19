@@ -49,7 +49,7 @@ public abstract class Element {
 	public synchronized void arrive(String trainName) {
 	}
 	
-	public synchronized void depart(String trainName, Element nextElement) {
+	public synchronized void depart(String trainName) {
 		
 	}
 }

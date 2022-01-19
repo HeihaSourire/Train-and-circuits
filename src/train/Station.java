@@ -41,14 +41,14 @@ public class Station extends Element {
 				e.printStackTrace();
 			}
 		}
-		System.out.println(trainName + " arrive " + name);
-		super.nbTrain++;
+		System.out.println(trainName + " left " + name);
+		super.nbTrain--;
 	}
 	
 	@Override
-	public synchronized void depart(String trainName, Element nextElement) {
+	public synchronized void depart(String trainName) {
 		// TODO Auto-generated method stub
-		while (nextElement.taken == true) {
+		while (taken == true) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -57,9 +57,9 @@ public class Station extends Element {
 			}
 		}
 		
-		nextElement.taken = true;
-		super.nbTrain--;
-		System.out.println(trainName + " depart " + name);
+//		taken = true;
+		super.nbTrain++;
+		System.out.println(trainName + " go to " + name);
 		notifyAll();
 	}
 }
