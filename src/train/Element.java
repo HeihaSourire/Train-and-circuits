@@ -46,10 +46,10 @@ public abstract class Element {
 		
 	}
 	
-	public synchronized void arrive(String trainName) {
+	public synchronized void depart() {
 	}
 	
-	public synchronized void depart(String trainName) {
+	public synchronized void askAccess() {
 		
 	}
 }

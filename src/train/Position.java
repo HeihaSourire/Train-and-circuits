@@ -64,37 +64,46 @@ public class Position implements Cloneable {
 		return result.toString();
 	}
 	
-	public boolean moveNext(String trainName) {
-		
+	public Element askAccess() {
 		Element nextElement = null;
 		
 		if (direction == Direction.LR) {
-			nextElement = pos.railway.getElement(posIndex + 1);
-		} else if (direction == Direction.RL){
-			nextElement = pos.railway.getElement(posIndex - 1);
-		}
-		
-		nextElement.depart(trainName);
-		pos.arrive(trainName);
-		
-//		try {
-//			Thread.sleep(500);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-		if (direction == Direction.LR) {
 			posIndex++;
+			nextElement = pos.railway.getElement(posIndex);
 		} else if (direction == Direction.RL){
 			posIndex--;
+			nextElement = pos.railway.getElement(posIndex);
 		}
 		
+		nextElement.askAccess();
+		return nextElement;
+	}
+	
+	public boolean moveNext(String trainName) {
+		
+//		System.out.println(trainName + " is in" + pos.name);
+		
+		Element nextElement = askAccess();
+		System.out.println(trainName + " leaves " + pos.name + " to go to " + nextElement.name);
+		
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		pos.depart();
 		pos = nextElement;
-//		pos.arrive(trainName);
+		System.out.println(trainName + " arrive at " + pos.name);
+		
+//		if (direction == Direction.LR) {
+//			posIndex++;
+//		} else if (direction == Direction.RL){
+//			posIndex--;
+//		}
 		
 		if (pos.isArrive()) {
-			pos.arrive(trainName);
 			switch (direction) {
 				case LR :
 					direction = direction.RL;
@@ -103,7 +112,7 @@ public class Position implements Cloneable {
 					direction = direction.LR;
 					break;
 			}
-			
+			System.out.println(trainName + " se retourne");
 			return true;
 		}
 		

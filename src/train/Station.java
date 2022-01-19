@@ -31,24 +31,17 @@ public class Station extends Element {
 	}
 	
 	@Override
-	public synchronized void arrive(String trainName) {
+	public synchronized void depart() {
 		// TODO Auto-generated method stub
-		while(nbTrain > size) {
-			try {
-				wait();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		System.out.println(trainName + " left " + name);
+
 		super.nbTrain--;
+		notifyAll();
 	}
 	
 	@Override
-	public synchronized void depart(String trainName) {
+	public synchronized void askAccess() {
 		// TODO Auto-generated method stub
-		while (taken == true) {
+		while (nbTrain > size) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -57,9 +50,8 @@ public class Station extends Element {
 			}
 		}
 		
-//		taken = true;
 		super.nbTrain++;
-		System.out.println(trainName + " go to " + name);
-		notifyAll();
+
+//		notifyAll();
 	}
 }

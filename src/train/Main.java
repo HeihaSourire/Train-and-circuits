@@ -18,7 +18,7 @@ public class Main {
 		try {
 			Train train1 = new Train("1", pLR);
 			Thread t1 = new Thread(train1);
-			Train train2 = new Train("2", pRL);
+			Train train2 = new Train("2", pLR);
 			Thread t2 = new Thread(train2);
 			
 //			Train t3 = new Train("3", p);

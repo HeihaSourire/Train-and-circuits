@@ -21,37 +21,15 @@ public class Section extends Element {
 	}
 	
 	@Override
-	public synchronized void arrive(String trainName) {
-		// TODO Auto-generated method stub
-//		while(taken) {
-//			try {
-//				wait();
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-		
-		System.out.println(trainName + " left " + name);
+	public synchronized void depart() {
+
 		this.taken = false;
 		notifyAll();
 	}
 	
 	@Override
-	public synchronized void depart(String trainName) {
-		// TODO Auto-generated method stub
-//		System.out.println(trainName + " is in " + name);
-//		while (nextElement.taken) {
-//			try {
-//				wait();
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//			}
-//		}
-//		nextElement.taken = true;
-//		super.taken = false;
-//		System.out.println(trainName + " from " + name + " to " + nextElement.toString());
-//		notifyAll();
+	public synchronized void askAccess() {
+
 		while(taken == true) {
 			try {
 				wait();
@@ -61,7 +39,6 @@ public class Section extends Element {
 			}
 		}
 		
-		System.out.println(trainName + " want to go " + name);
 		super.taken = true;
 //		notifyAll();
 	}

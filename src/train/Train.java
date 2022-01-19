@@ -45,23 +45,17 @@ public class Train implements Runnable{
 	}
 	
 	public void deplace() {
-//		pos.getPos()
 
-		while (true) {
-			if (pos.moveNext(this.name)) {
-//				System.out.println("le train " + this.name + " est en " + pos.getPos().toString());
-//				System.out.println("le train " + this.name + " se retourne");
-				break;
-			}
-//			System.out.println("le train " + this.name + " est en " + pos.getPos().toString());
-		}
-		
+		pos.moveNext(name);
 		
 	}
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		this.deplace();
+		while(true) {
+			this.deplace();
+		}
+
 	}
 }
