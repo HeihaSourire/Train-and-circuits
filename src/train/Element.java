@@ -35,4 +35,8 @@ public abstract class Element {
 	public String toString() {
 		return this.name;
 	}
+	
+	public boolean isArrive() {
+		return false;
+	}
 }

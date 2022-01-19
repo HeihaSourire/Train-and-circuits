@@ -16,14 +16,17 @@ public class Main {
 		Position p = new Position(A, Direction.LR);
 		try {
 			Train t1 = new Train("1", p);
-			Train t2 = new Train("2", p);
-			Train t3 = new Train("3", p);
+//			Train t2 = new Train("2", p);
+//			Train t3 = new Train("3", p);
+//			System.out.println(t1);
+//			System.out.println(t2);
 			System.out.println(t1);
-			System.out.println(t2);
-			System.out.println(t3);
+			
+			t1.deplace();
 		} catch (BadPositionForTrainException e) {
 			System.out.println("Le train " + e.getMessage());
 		}
+		
 
 	}
 }

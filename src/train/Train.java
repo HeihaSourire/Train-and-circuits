@@ -42,4 +42,12 @@ public class Train {
 		result.append(this.pos);
 		return result.toString();
 	}
+	
+	public void deplace() {
+//		pos.getPos()
+		System.out.println("le train est en " + pos.getPos().toString());
+		while (!pos.moveNext()) {
+		}
+		
+	}
 }

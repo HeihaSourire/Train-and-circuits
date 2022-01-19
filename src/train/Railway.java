@@ -33,4 +33,12 @@ public class Railway {
 		}
 		return result.toString();
 	}
+	
+	public Element getElement(int index) {
+		if (index >=0 && index < elements.length) {
+			return elements[index];
+		}
+		
+		return null;
+	}
 }

@@ -20,8 +20,9 @@ package train;
  * @version 0.3
  */
 public class Position implements Cloneable {
-	private final Direction direction;
-	private final Element pos;
+	private Direction direction;
+	private Element pos;
+	private int posIndex;
 
 	public Position(Element elt, Direction d) {
 		if (elt == null || d == null)
@@ -29,6 +30,8 @@ public class Position implements Cloneable {
 
 		this.pos = elt;
 		this.direction = d;
+		
+		posIndex = 0;
 	}
 
 	@Override
@@ -51,5 +54,27 @@ public class Position implements Cloneable {
 		result.append(" going ");
 		result.append(this.direction);
 		return result.toString();
+	}
+	
+	public boolean moveNext() {
+		Element nextElement = pos.railway.getElement(++posIndex);
+		System.out.println("le train sort de " + pos.toString() + " et entre dans " + nextElement.toString());
+		pos = nextElement;
+		
+		
+		if (pos.isArrive()) {
+			switch (direction) {
+				case LR :
+					direction = direction.RL;
+					break;
+				case RL :
+					direction = direction.LR;
+					break;
+			}
+			System.out.print("le train se retourne");
+			return true;
+		}
+		
+		return false;
 	}
 }

@@ -11,4 +11,12 @@ public class Section extends Element {
 	public Section(String name) {
 		super(name);
 	}
+
+	@Override
+	public boolean isArrive() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
 }

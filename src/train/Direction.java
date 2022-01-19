@@ -14,6 +14,7 @@ public enum Direction {
 			return "from left to right";
 		}
 	},
+	
 	RL {
 		@Override
 		public String toString() {

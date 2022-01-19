@@ -17,4 +17,12 @@ public class Station extends Element {
 			throw new NullPointerException();
 		this.size = size;
 	}
+
+	@Override
+	public boolean isArrive() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
+	
 }
