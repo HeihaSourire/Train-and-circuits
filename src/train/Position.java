@@ -75,7 +75,7 @@ public class Position implements Cloneable {
 			nextElement = pos.railway.getElement(posIndex);
 		}
 		
-		nextElement.askAccess();
+		nextElement.askAccess(pos, direction);
 		return nextElement;
 	}
 	
@@ -93,7 +93,7 @@ public class Position implements Cloneable {
 			e.printStackTrace();
 		}
 		
-		pos.depart();
+		pos.depart(nextElement);
 		pos = nextElement;
 		System.out.println(trainName + " arrive at " + pos.name);
 		
@@ -103,7 +103,7 @@ public class Position implements Cloneable {
 //			posIndex--;
 //		}
 		
-		if (pos.isArrive()) {
+		if (pos.isStation()) {
 			switch (direction) {
 				case LR :
 					direction = direction.RL;

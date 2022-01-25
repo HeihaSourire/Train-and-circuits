@@ -18,18 +18,17 @@ public class Main {
 		try {
 			Train train1 = new Train("1", pLR);
 			Thread t1 = new Thread(train1);
-			Train train2 = new Train("2", pLR);
+			Train train2 = new Train("2", pRL);
 			Thread t2 = new Thread(train2);
 			
 //			Train t3 = new Train("3", p);
 			System.out.println(train1);
 			System.out.println(train2);
-			
-			t2.start();		
+				
 			t1.start();
+			t2.start();
 
 			
-//			System.out.println(t1);
 			
 		} catch (BadPositionForTrainException e) {
 			System.out.println("Le train " + e.getMessage());

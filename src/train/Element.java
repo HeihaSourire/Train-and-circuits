@@ -38,7 +38,7 @@ public abstract class Element {
 		return this.name;
 	}
 	
-	public boolean isArrive() {
+	public boolean isStation() {
 		return false;
 	}
 	
@@ -46,10 +46,10 @@ public abstract class Element {
 		
 	}
 	
-	public synchronized void depart() {
+	public synchronized void depart(Element posNext) {
 	}
 	
-	public synchronized void askAccess() {
+	public synchronized void askAccess(Element pos, Direction dir) {
 		
 	}
 }

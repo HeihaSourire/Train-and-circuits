@@ -19,7 +19,7 @@ public class Station extends Element {
 	}
 
 	@Override
-	public boolean isArrive() {
+	public boolean isStation() {
 		// TODO Auto-generated method stub
 		return true;
 	}
@@ -30,8 +30,12 @@ public class Station extends Element {
 		super.nbTrain++;
 	}
 	
+	public boolean invariant() {
+		return nbTrain <= size;
+	}
+	
 	@Override
-	public synchronized void depart() {
+	public synchronized void depart(Element posNext) {
 		// TODO Auto-generated method stub
 
 		super.nbTrain--;
@@ -39,9 +43,9 @@ public class Station extends Element {
 	}
 	
 	@Override
-	public synchronized void askAccess() {
+	public synchronized void askAccess(Element posPrev, Direction dir) {
 		// TODO Auto-generated method stub
-		while (nbTrain > size) {
+		while (!invariant()) {
 			try {
 				wait();
 			} catch (InterruptedException e) {

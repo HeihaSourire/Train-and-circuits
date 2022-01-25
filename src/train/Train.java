@@ -53,6 +53,7 @@ public class Train implements Runnable{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
+		
 		while(true) {
 			this.deplace();
 		}

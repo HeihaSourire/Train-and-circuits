@@ -15,22 +15,41 @@ public class Section extends Element {
 	}
 
 	@Override
-	public boolean isArrive() {
+	public boolean isStation() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 	
+	public boolean invariant() {
+		return taken == false;
+	}
+	
 	@Override
-	public synchronized void depart() {
-
+	public synchronized void depart(Element posNext) {
+		if(posNext.isStation()) {
+			railway.leaveLigne();
+		}
+		
 		this.taken = false;
 		notifyAll();
 	}
 	
 	@Override
-	public synchronized void askAccess() {
+	public synchronized void askAccess(Element posPrev, Direction dir) {
+		if(posPrev.isStation()) {
+			while(!railway.invariant(dir)) {
+				try {
+					wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			railway.askEnterLigne(dir);
+		}
 
-		while(taken == true) {
+		while(!invariant()) {
 			try {
 				wait();
 			} catch (InterruptedException e) {

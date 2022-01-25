@@ -10,6 +10,8 @@ package train;
  */
 public class Railway {
 	private final Element[] elements;
+	private int nbTrainSurLige = 0;
+	private Direction takenByDirection = null;
 
 	public Railway(Element[] elements) {
 		if(elements == null)
@@ -44,5 +46,19 @@ public class Railway {
 	
 	public int railWayLength() {
 		return elements.length;
+	}
+	
+	public boolean invariant(Direction dir) {
+		return (nbTrainSurLige == 0) || (takenByDirection == dir);
+	}
+	
+	public void askEnterLigne(Direction dir) {
+		nbTrainSurLige++;
+		takenByDirection = dir;
+	}
+	
+	public void leaveLigne() {
+		nbTrainSurLige--;
+		takenByDirection = null;
 	}
 }
