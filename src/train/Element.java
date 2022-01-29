@@ -46,9 +46,17 @@ public abstract class Element {
 		
 	}
 	
+	/*
+	 * Selon les caractéristiques de chaque sous-classe, modifier ses variables
+	 */
 	public synchronized void depart(Element posNext) {
 	}
 	
+	/*
+	 * Déterminer si le train peut accéder la position prochaine
+	 *     pour Section, le train peut accéder si elle n'est pas occupée
+	 *     pour Station, le train peut accéder si elle n'est pas pleine.
+	 */
 	public synchronized void askAccess(Element pos, Direction dir) {
 		
 	}

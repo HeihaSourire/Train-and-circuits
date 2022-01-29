@@ -64,6 +64,9 @@ public class Position implements Cloneable {
 		return result.toString();
 	}
 	
+	/*
+	 * Trouver la prochaine position
+	 */
 	public Element askAccess() {
 		Element nextElement = null;
 		
@@ -79,21 +82,21 @@ public class Position implements Cloneable {
 		return nextElement;
 	}
 	
-	public boolean moveNext(String trainName) {
+	public void moveNext(String trainName) {
 		
 //		System.out.println(trainName + " is in" + pos.name);
 		
-		Element nextElement = askAccess();
+		Element nextElement = askAccess(); //Déterminer si la position prochaine est occupée, sinon l'occupe
 		System.out.println(trainName + " leaves " + pos.name + " to go to " + nextElement.name);
 		
 		try {
-			Thread.sleep(100);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		pos.depart(nextElement);
+		pos.depart(nextElement); //Relâcher la position currente et passer à la position prochaine
 		pos = nextElement;
 		System.out.println(trainName + " arrive at " + pos.name);
 		
@@ -113,10 +116,8 @@ public class Position implements Cloneable {
 					break;
 			}
 			System.out.println(trainName + " se retourne");
-			return true;
 		}
 		
-		return false;
 	}
 	
 	

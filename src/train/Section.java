@@ -36,6 +36,7 @@ public class Section extends Element {
 	
 	@Override
 	public synchronized void askAccess(Element posPrev, Direction dir) {
+		//Pour Station -> Section, il faut déterminer si il n'y a pas l'interblocage
 		if(posPrev.isStation()) {
 			while(!railway.invariant(dir)) {
 				try {

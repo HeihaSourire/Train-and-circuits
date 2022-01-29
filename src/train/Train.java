@@ -44,6 +44,9 @@ public class Train implements Runnable{
 		return result.toString();
 	}
 	
+	/*
+	 * Le deplacement du train est le changement de la position
+	 */
 	public void deplace() {
 
 		pos.moveNext(name);
@@ -52,7 +55,6 @@ public class Train implements Runnable{
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		
 		while(true) {
 			this.deplace();

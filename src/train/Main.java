@@ -21,12 +21,15 @@ public class Main {
 			Train train2 = new Train("2", pRL);
 			Thread t2 = new Thread(train2);
 			
-//			Train t3 = new Train("3", p);
+			Train train3 = new Train("3", pLR);
+			Thread t3 = new Thread(train3);
 			System.out.println(train1);
 			System.out.println(train2);
+			System.out.println(train3);
 				
 			t1.start();
 			t2.start();
+			t3.start();
 
 			
 			
